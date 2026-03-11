@@ -28,6 +28,8 @@ jobs:
           tags: khawar603/my-react-app:latest
         
       - name: Deploy to Railway
-        uses: railwayapp/railway-github-action@v1
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN}}
+        run: |
+          npm install -g @railway/cli
+          railway redeploy --service my-react-app --yes
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN}}
